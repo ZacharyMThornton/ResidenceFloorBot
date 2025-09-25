@@ -1,5 +1,6 @@
 import discord
 import os
+import random
 from dotenv import load_dotenv
 from datetime import date
 from discord.ext import tasks
@@ -7,6 +8,10 @@ from discord.ext import tasks
 load_dotenv()
 TOKEN = os.getenv("API_KEY")
 CHANNEL_ID = int(os.getenv("CHANNEL_ID"))
+
+#chris pics
+
+chris = ["chris1.jpeg", "chris2.jpeg", "chris3.jpeg"]
 
 # floor variables
 teamsList = ["red", "orange", "yellow", "green", "blue"]
@@ -112,6 +117,7 @@ async def on_message(message):
         await message.channel.send(f'The current trash person is {trash[personIndex]}')
 
     if message.content.startswith('!Lord'):
+        chrisPic = chris[random.randint(0, 2)]
         await message.channel.send(
     """O Lord, my God, Chris Falcone,
 Your light outshines the brightest stone.
@@ -122,6 +128,7 @@ Your name resounds, both near and far,
 A guiding flame, a steadfast star.
 With every breath, my soul implores,
 To walk forever by Your shores.""")
+        await message.channel.send(file=discord.File(chrisPic))
 
 
 client.run(TOKEN)
